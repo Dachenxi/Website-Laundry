@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
 
 /* style.css */
 html,
@@ -25,7 +26,7 @@ footer {
 
 body {
     background-color: #dda15e;
-    font-family: "Rubik", sans-serif;
+    font-family: "Nunito", sans-serif;
 }
 
 .popup {
@@ -34,6 +35,30 @@ body {
 
 .primary {
     background-color: hsl(74, 32%, 32%);
+}
+
+.button-primary {
+    border: solid 1px;
+    background-color: hsl(74, 32%, 32%);
+    border-color: hsl(74, 32%, 32%);
+}
+
+.button-primary:hover {
+    background-color: hsl(74, 32%, 45%);
+    border-color: hsl(74, 32%, 45%);
+    transition: all 0.3s ease;
+}
+
+.button-primary:active:hover {
+    background-color: hsl(74, 32%, 25%);
+    border-color: hsl(74, 32%, 25%);
+    transition: all 0.3s ease;
+}
+
+.button-primary:active:not(:hover) {
+    background-color: hsl(74, 32%, 25%);
+    border-color: hsl(74, 32%, 25%);
+    transition: all 0.3s ease;
 }
 
 .nav-item a:hover {
