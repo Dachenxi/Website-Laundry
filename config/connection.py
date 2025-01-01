@@ -1,5 +1,4 @@
 import mysql.connector, os
-from dotenv import load_dotenv
 from mysql.connector import Error
 
 host = os.getenv("DB_HOST")
@@ -9,7 +8,6 @@ database = os.getenv("DB_NAME")
 port = os.getenv("DB_PORT")
 
 def env():
-    load_dotenv("config/.env")
     data = {
         "host" : os.getenv('DB_HOST'),
         "user" : os.getenv('DB_USER'),
