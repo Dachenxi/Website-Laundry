@@ -1,2 +1,16 @@
+# Ignore Visual Studio Code settings and workspace files
+.vscode/
+
+# Ignore Python cache files
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pdb
+*.egg
+*.egg-info/
+dist/
+build/
+*.so
+
 config/.env
-.codegpt

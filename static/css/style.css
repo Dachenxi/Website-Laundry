@@ -1,22 +1,29 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
 
 /* style.css */
-html,
 body {
-    height: 100%;
-    /* Pastikan body mencakup seluruh viewport */
+    min-height: 100vh;
     margin: 0;
-    padding: 0;
 }
 
-main {
-    min-height: calc(100vh - 130px);
-    /* Kurangi tinggi header + footer */
+header {
+    min-height: 50px;
 }
 
 footer {
-    color: #6c757d;
-    padding: 10px 0;
+    min-height: 50px;
+}
+
+
+/* The article fills all the space between header & footer */
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1;
 }
 
 header,
@@ -60,6 +67,8 @@ body {
     border-color: hsl(74, 32%, 25%);
     transition: all 0.3s ease;
 }
+
+
 
 .nav-item a:hover {
     transition: background-color 0.5s ease-in-out;
