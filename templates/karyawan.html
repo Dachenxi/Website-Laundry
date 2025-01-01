@@ -3,14 +3,14 @@
 {% block content %}
 
 <div class="container-fluid ">
-    <div class="container-fluid border-1 shadow p-3 border-black rounded-2">
+    <div class="popup shadow p-3 border-black rounded-2">
         <div class="row justify-content-center">
             <div class="col">
                 <div class="card">
                     <div class="card-body">
                         <h4 class="card-title">Total Karyawan</h4>
                         <p class="card-text fs-2">
-                            <span class="badge bg-primary">12</span>
+                            <span class="badge primary">12</span>
                         </p>
                     </div>
                 </div>
@@ -20,7 +20,7 @@
                     <div class="card-body">
                         <h4 class="card-title">Karyawan Laki-Laki</h4>
                         <p class="card-text fs-2">
-                            <span class="badge bg-primary">12</span>
+                            <span class="badge primary">12</span>
                         </p>
                     </div>
                 </div>
@@ -30,15 +30,15 @@
                     <div class="card-body">
                         <h4 class="card-title">Karyawan Perempuan</h4>
                         <p class="card-text fs-2">
-                            <span class="badge bg-primary">2</span>
+                            <span class="badge primary">2</span>
                         </p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="container-fluid mt-3 d-flex justify-content-center">
-        <div class="border border-1 rounded-2 p-3 d-flex shadow gap-3">
+    <div class="mt-3 d-flex justify-content-center">
+        <div class="popup border-1 rounded-2 p-3 d-flex shadow gap-3 ">
             <div>
                 <input
                     type="text"
@@ -52,7 +52,7 @@
             <div>
                 <button
                     type="button"
-                    class="btn btn-primary shadow-sm"
+                    class="btn primary text-white shadow-sm"
                     data-bs-toggle="modal"
                     data-bs-target="#addKaryawan"
                 >
@@ -62,8 +62,8 @@
         </div>
     </div>
 </div>
-<div class="container-fluid mt-3">
-    <div class="container-fluid p-3 border-1 shadow border-black rounded-2">
+<div class="container-fluid border-black mt-3">
+    <div class="popup shadow p-3 rounded-2 ">
         <table class="table table-bordered table-hover table-striped" id="table-karyawan">
             <thead>
                 <tr class="text-center">
@@ -71,10 +71,8 @@
                     <th>Nama</th>
                     <th>Jenis Kelamin</th>
                     <th>Posisi</th>
-                    <th>Alamat</th>
                     <th>No. Telepon</th>
-                    <th>Email</th>
-                    <th>Aksi</th>
+                    <th>Tombol Aksi</th>
                 </tr>
             </thead>
             <tbody id="tabel-karyawan-body">

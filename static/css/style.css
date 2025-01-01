@@ -1,4 +1,42 @@
 
+/* style.css */
+html,
 body {
+    height: 100%;
+    /* Pastikan body mencakup seluruh viewport */
+    margin: 0;
+    padding: 0;
+}
+
+main {
+    min-height: calc(100vh - 130px);
+    /* Kurangi tinggi header + footer */
+}
+
+footer {
+    color: #6c757d;
+    padding: 10px 0;
+}
+
+header,
+footer {
+    background-color: #283618;
+}
+
+body {
+    background-color: #dda15e;
     font-family: "Rubik", sans-serif;
+}
+
+.popup {
+    background-color: #bc6c25;
+}
+
+.primary {
+    background-color: hsl(74, 32%, 32%);
+}
+
+.nav-item a:hover {
+    transition: background-color 0.5s ease-in-out;
+    background-color: hsl(74, 32%, 45%);
 }
