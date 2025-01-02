@@ -4,8 +4,8 @@
 
 <div class="container-fluid">
     <div class="popup p-3 border-1 shadow rounded-2">
-        <div class="row justify-content-center">
-            <div class="col mb-3">
+        <div class="row justify-content-center g-3">
+            <div class="col">
                 <div class="card">
                     <div class="card-body">
                         <h4 class="card-title">Transaksi Hari Ini</h4>
@@ -15,7 +15,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col mb-3">
+            <div class="col">
                 <div class="card">
                     <div class="card-body">
                         <h4 class="card-title">Transaksi Semuanya</h4>
@@ -27,12 +27,12 @@
             </div>
         </div>
     </div>
-    <div class="mt-3 d-flex justify-content-center">
-        <div class="popup d-flex gap-3 p-3 border-1 rounded-2 shadow">
-            <div>
+    <div class="mt-3">
+        <div class="popup d-grid gap-3 p-3 border-1 rounded-2 shadow">
+            <div class="col">
                 <input type="text" class="form-control" placeholder="Cari Pelanggan / Status" id="search" onkeyup="filterTable()">
             </div>
-            <div>
+            <div class="col d-flex justify-content-center">
                 <button type="button" class="btn primary text-white button-primary" data-bs-toggle="modal" data-bs-target="#addTransaksi">Tambah Transaksi</button>
             </div>
         </div>
