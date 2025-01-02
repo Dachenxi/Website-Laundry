@@ -1,31 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
 
-/* style.css */
-body {
-    min-height: 100vh;
-    margin: 0;
-}
-
-header {
-    min-height: 50px;
-}
-
-footer {
-    min-height: 50px;
-}
-
-
-/* The article fills all the space between header & footer */
-
-body {
-    display: flex;
-    flex-direction: column;
-}
-
-main {
-    flex: 1;
-}
-
 header,
 footer {
     background-color: #283618;
@@ -34,6 +8,7 @@ footer {
 body {
     background-color: #dda15e;
     font-family: "Nunito", sans-serif;
+    overflow-y: hidden;
 }
 
 .popup {
@@ -67,8 +42,6 @@ body {
     border-color: hsl(74, 32%, 25%);
     transition: all 0.3s ease;
 }
-
-
 
 .nav-item a:hover {
     transition: background-color 0.5s ease-in-out;
