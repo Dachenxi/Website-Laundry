@@ -107,3 +107,18 @@ body::-webkit-scrollbar-thumb,
     border-radius: 5px;
     color: white;
 }
+
+.icon-sucsess {
+    background-color: hsl(74, 32%, 45%);
+    position: absolute;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    top: -5rem;
+    width: 8rem;
+    height: 8rem;
+}
+
+.modal-succes {
+    background-color: hsl(74, 32%, 25%);
+}
