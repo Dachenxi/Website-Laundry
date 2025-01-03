@@ -39,40 +39,22 @@
     </div>
     <div class="mt-3">
         <div class="popup border-1 rounded-2 p-3 shadow d-grid gap-3">
-            <div class="col d-flex">
-                <input
-                    type="text"
-                    class="form-control"
-                    name="searchKaryawan"
-                    id="search"
-                    placeholder="Cari Nama / ID"
-                    onkeyup="filterTable()"
-                />
-            </div>
             <div class="col d-flex justify-content-center">
-                <button
-                    type="button"
-                    class="btn text-white button-primary"
-                    data-bs-toggle="modal"
-                    data-bs-target="#addKaryawan"
-                >
-                    Tambah Karyawan
-                </button>
+                <button class="btn button-primary" data-bs-toggle="modal" data-bs-target="#tambah-karyawan">Tambah Karyawan</button>
             </div>
         </div>
     </div>
 </div>
 <div class="container-fluid border-black mt-3">
     <div class="popup shadow p-3 rounded-2 ">
-        <table class="table table-bordered table-hover table-striped" id="table-karyawan">
+        <table class="table table-bordered table-hover table-striped" id="tabel-karyawan">
             <thead>
                 <tr class="text-center">
-                    <th>No</th>
+                    <th>ID</th>
                     <th>Nama</th>
-                    <th>Jenis Kelamin</th>
                     <th>Posisi</th>
-                    <th>No. Telepon</th>
-                    <th>Tombol Aksi</th>
+                    <th>Telp</th>
+                    <th>Aksi</th>
                 </tr>
             </thead>
             <tbody id="tabel-karyawan-body">
@@ -80,4 +62,95 @@
         </table>
     </div>
 </div>
+
+<!-- Modal Body -->
+<div
+    class="modal fade"
+    id="tambah-karyawan"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="modalTitleId"
+    aria-hidden="true"
+>
+    <div
+        class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-fullscreen-sm-down"
+        role="document"
+    >
+        <div class="modal-content">
+            <div class="modal-header rounded-bottom-4 shadow-sm">
+                <h5 class="modal-title" id="modalTitleId">
+                    Form Tambah Karyawan
+                </h5>
+                <button type="button" class="btn-close primary" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="d-flex text-white flex-column gap-3">
+                    <div class="flex-fill rounded-2 border-black popup p-3 shadow-sm">
+                        <label for="Nama-Karyawan" class="form-label">Nama Karyawan</label>
+                        <input
+                            type="text"
+                            class="form-control"
+                            name="Nama-Karyawan"
+                            id="Nama-Karyawan"
+                            placeholder="Nama"
+                        />
+                    </div>
+                    <div class="flex-fill rounded-2 border-black popup p-3 shadow-sm">
+                        <label for="Alamat-Karyawan" class="form-label">Alamat</label>
+                        <input
+                            type="text"
+                            class="form-control"
+                            name="Alamat-Karyawan"
+                            id="Alamat-Karyawan"
+                            placeholder="Alamat"
+                        />
+                    </div>
+                    <div class="flex-fill rounded-2 border-black popup p-3 shadow-sm">
+                        <label for="Posisi-Karyawan" class="form-label">Posisi</label>
+                        <select
+                            class="form-select"
+                            name="Posisi-Karyawan"
+                            id="Posisi-Karyawan"
+                        >
+                            <option selected>Karyawan</option>
+                            <option value="Admin">Admin</option>
+                        </select>
+                    </div>
+                    <div class="flex-fill rounded-2 border-black popup p-3 shadow-sm">
+                        <label for="Nomor Telepon" class="form-label">No. Telepon</label>
+                        <input
+                            type="number"
+                            class="form-control"
+                            name="Nomor Telepon"
+                            id="Nomor Telepon"
+                            placeholder="Nomer Telepon"
+                        />
+                    </div>
+                    <div class="flex-fill rounded-2 border-black popup p-3 shadow-sm">
+                        <label for="Email-Karyawan" class="form-label">Email</label>
+                        <input
+                            type="email"
+                            class="form-control"
+                            name="Email-Karyawan"
+                            id="Email-Karyawan"
+                            placeholder="Email Karyawan"
+                        />
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-footer rounded-top-4 shadow-sm justify-content-between">
+                <button
+                    type="button"
+                    class="btn btn-danger"
+                    data-bs-dismiss="modal"
+                >
+                    Close
+                </button>
+                <button type="button" class="btn button-primary">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 {% endblock %}
