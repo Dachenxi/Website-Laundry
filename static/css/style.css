@@ -3,7 +3,10 @@
     src: url("../font/Montserrat.ttf");
 }
 header,
-footer {
+footer,
+.modal-header,
+.modal-footer {
+    color: white;
     background-color: #283618;
 }
 
@@ -12,6 +15,47 @@ main {
 }
 
 body {
+    background-color: #dda15e;
+    font-family: "Montserrat";
+    font-weight: 600;
+}
+
+body {
+    --sb-track-color: hsl(74, 32%, 32%);
+    --sb-thumb-color: hsl(74, 32%, 45%);
+    --sb-size: 5px;
+}
+
+body::-webkit-scrollbar,
+.modal-body::-webkit-scrollbar {
+    width: var(--sb-size)
+}
+
+body::-webkit-scrollbar-track,
+.modal-body::-webkit-scrollbar-track {
+    background: var(--sb-track-color);
+    border-radius: 12px;
+}
+
+body::-webkit-scrollbar-thumb,
+.modal-body::-webkit-scrollbar-thumb {
+    background: var(--sb-thumb-color);
+    border-radius: 12px;
+
+}
+
+@supports not selector(::-webkit-scrollbar) {
+    body {
+        scrollbar-color: var(--sb-thumb-color) var(--sb-track-color);
+    }
+}
+
+.modal-header,
+.modal-footer {
+    border: none;
+}
+
+.modal-content {
     background-color: #dda15e;
     font-family: "Montserrat";
     font-weight: 600;
@@ -29,27 +73,37 @@ body {
     border: solid 1px;
     background-color: hsl(74, 32%, 32%);
     border-color: hsl(74, 32%, 32%);
+    color: white;
 }
 
 .button-primary:hover {
     background-color: hsl(74, 32%, 45%);
     border-color: hsl(74, 32%, 45%);
     transition: all 0.3s ease;
+    color: white;
 }
 
 .button-primary:active:hover {
     background-color: hsl(74, 32%, 25%);
     border-color: hsl(74, 32%, 25%);
     transition: all 0.3s ease;
+    color: white;
 }
 
 .button-primary:active:not(:hover) {
     background-color: hsl(74, 32%, 25%);
     border-color: hsl(74, 32%, 25%);
     transition: all 0.3s ease;
+    color: white;
 }
 
-.nav-item a:hover {
-    transition: background-color 0.5s ease-in-out;
-    background-color: hsl(74, 32%, 45%);
+.dt-length,
+.dt-search,
+.dt-paging,
+.dt-info {
+    display: block;
+    background-color: hsl(74, 32%, 32%);
+    padding: 10px;
+    border-radius: 5px;
+    color: white;
 }
