@@ -29,30 +29,20 @@
     </div>
     <div class="mt-3">
         <div class="popup p-3 shadow rounded-2 d-grid gap-3">
-            <div class="col">
-                <input
-                    type="text"
-                    class="form-control"
-                    name="searchPelanggan"
-                    id="searchPelanggan"
-                    aria-describedby="helpId"
-                    placeholder="Nama Customer"
-                />
-            </div>
             <div class="col d-flex justify-content-center">
                 <button type="button" class="btn text-white button-primary">Tambah Pelanggan</button>
             </div>
         </div>
     </div>
-    <div class="p-3 popup shadow mt-3">
-        <table class="table table-striped table-hover table-bordered" id="tabel-pelanggan">
+    <div class="p-3 popup shadow mt-3 rounded-2">
+        <table id="tabel-pelanggan" class="table table-striped table-hover">
             <thead>
                 <tr>
-                    <th>Id</th>
-                    <th>Nama Customer</th>
+                    <th>ID</th>
+                    <th>Nama</th>
                     <th>Alamat</th>
-                    <th>Nomor Telepon</th>
-                    <th>Tombol Aksi</th>
+                    <th>Telepon</th>
+                    <th>Aksi</th>
                 </tr>
             </thead>
             <tbody>
@@ -61,6 +51,5 @@
         </table>
     </div>
 </div>
-
 
 {% endblock %}
