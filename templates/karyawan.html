@@ -53,25 +53,34 @@
                     <th>ID</th>
                     <th>Nama</th>
                     <th>Posisi</th>
-                    <th>Telp</th>
                     <th>Aksi</th>
                 </tr>
             </thead>
             <tbody id="tabel-karyawan-body">
+                <tr>
+                    <td>Data Dummy</td>
+                    <td>Data Dummy</td>
+                    <td>Data Dummy</td>
+                    <td>Data Dummy</td>
+                    <td class="text-center">
+                        <div class="container-fluid">
+                            <button type="button" class="btn button-primary" data-bs-toggle="modal" data-bs-target="#Detail-Karyawan">Details</button>
+                        </div>
+                    </td>
+                </tr>
             </tbody>
         </table>
     </div>
 </div>
 
-<!-- Modal Body -->
+<!-- Modal Form Karyawan -->
 <div
     class="modal fade"
     id="tambah-karyawan"
     tabindex="-1"
     role="dialog"
     aria-labelledby="modalTitleId"
-    aria-hidden="true"
->
+    aria-hidden="true">
     <div
         class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-fullscreen-sm-down"
         role="document"
@@ -147,7 +156,67 @@
                 >
                     Close
                 </button>
-                <button type="button" class="btn button-primary">Save</button>
+                <button type="button" class="btn button-primary" data-bs-toggle="modal" data-bs-target="#Succes">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Body-->
+<div
+    class="modal fade"
+    id="Detail-Karyawan"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="modalTitleId"
+    aria-hidden="true"
+>
+    <div class="modal-dialog modal-xl modal-dialog-scrollable modal-dialog-centered modal-fullscreen-sm-down" role="document">
+        <div class="modal-content">
+            <div class="modal-header rounded-bottom-4">
+                <h5 class="modal-title" id="modalTitleId">
+                    Detail Karyawan
+                </h5>
+                <button
+                    type="button"
+                    class="btn-close primary"
+                    data-bs-dismiss="modal"
+                    aria-label="Close"
+                ></button>
+            </div>
+            <div class="modal-body">
+                <div class="container-fluid">
+                    <div class="row g-3 align-items-center">
+                        <div class="col-12 col-lg-3 text-center">
+                            <div class="rounded-circle popup p-3 shadow-sm align-self-center d-inline-flex">
+                                <img src="../static/images/user.png" alt="Gambar Wajah" width="125" height="125">
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-5">
+                            <div class="rounded-2 border-black popup p-3 shadow-sm">
+                                <p>Nama : Data Dummy</p>
+                                <p>ID : Data Dummy</p>
+                                <p>Alamt : Data Dummy</p>
+                                <p>Nomor Telepon : Data Dummy</p>
+                                <p>Email : Data Dummy@gmail.com</p>
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-4">
+                            <div class="rounded-2 border-black popup p-3 shadow-sm">
+                                <p>Statistik : Data Dummy</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer rounded-top-4">
+                <button
+                    type="button"
+                    class="btn btn-danger"
+                    data-bs-dismiss="modal"
+                >
+                    Close
+                </button>
             </div>
         </div>
     </div>
