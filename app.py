@@ -20,6 +20,5 @@ def karyawan():
 def barang():
     return render_template('pelanggan.html')
 
-
 if __name__ == '__main__':
     app.run(debug=True)
