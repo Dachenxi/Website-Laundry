@@ -13,7 +13,8 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://cdn.datatables.net/2.1.8/css/dataTables.bootstrap5.css">
         <link rel="stylesheet" href="../static/css/style.css"/>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=check_circle" />        <!-- Bootstrap JavaScript Libraries -->
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
         <script src="https://code.jquery.com/jquery-3.7.1.js"></script> <!-- jQuery -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
         <!-- Bootstrap JS -->
@@ -25,19 +26,18 @@
 
     <body>
         <header class="mb-3 rounded-bottom-4">
-            <nav class="navbar navbar-expand-sm align-items-center">
-                <div class="container-fluid  justify-content-between d-flex">
-                    <div class="p-1">
-                        <a class="navbar-brand" href="#">
-                            <img src="../static/images/dryer.png" alt="logo dryer" width="50" height="50">
+            <nav class="navbar navbar-expand-sm p-2">
+                <div class="container-fluid justify-content-between d-flex">
+                    <div >
+                        <a class="navbar-brand p-3 primary rounded-2" href="#">
+                            <img src="../static/images/laundry.png" alt="logo dryer" width="35" height="35">
                         </a>
                     </div>
                     <div>
-                        <button class="navbar-toggler p-2" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-                            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                            <span>
-                                <img src="../static/images/nav.png" style="filter: brightness(0) invert(1);" alt="Nav" width="30" height="30">
-                            </span>
+                        <button class="navbar-toggler p-2 primary rounded-2" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"
+                            >
+                            <img src="../static/images/list.png" alt="Laundry" width="25" height="25">
                         </button>
                     </div>
                     <div class="collapse navbar-collapse text-center justify-content-end" id="navbarSupportedContent">
@@ -73,29 +73,50 @@
             {% block content %}
             {% endblock %}
 
+            <!-- Modal Succes -->
+
             <div id="Succes" class="modal fade">
-                <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-dialog modal-dialog-centered modal-sm">
                     <div class="modal-content modal-succes">
-                        <div class="modal-header d-flex justify-content-center">
+                        <div class="modal-header d-flex justify-content-center rounded-bottom-5">
                             <div class="popup rounded-circle icon-sucsess align-self-center d-flex justify-content-center">
-                                <span class="material-symbols-outlined" style="font-size: 8rem; position: relative;">
-                                    check_circle
-                                </span>
+                                <span class="material-icons" style="font-size: 70px;">check</span>
                             </div>
                             <div>
-                                <h4 class="modal-title mt-5">Succes Njir wkwkwk</h4>
+                                <h4 class="modal-title mt-3">Succes Njir wkwkwk</h4>
                             </div>
                         </div>
                         <div class="modal-body">
                             <p class="text-center text-white">Data Ditambahkan</p>
                         </div>
-                        <div class="modal-footer d-flex justify-content-center">
+                        <div class="modal-footer d-flex justify-content-center rounded-top-5">
                             <button class="btn button-primary" data-bs-dismiss="modal">OK</button>
                         </div>
                     </div>
                 </div>
             </div>
 
+            <!-- Modal Failed -->
+            <div id="Failed" class="modal fade">
+                <div class="modal-dialog modal-dialog-centered modal-sm">
+                    <div class="modal-content modal-failed">
+                        <div class="modal-header d-flex justify-content-center rounded-bottom-5">
+                            <div class="popup rounded-circle icon-failed align-self-center d-flex justify-content-center">
+                                <span class="material-icons" style="font-size: 70px;">close</span>
+                            </div>
+                            <div>
+                                <h4 class="modal-title mt-3">Gagal Njir wkwkwk</h4>
+                            </div>
+                        </div>
+                        <div class="modal-body justify-content-end m-0">
+                            <p class="text-white text-center">Data Gagal Ditambahkan</p>
+                        </div>
+                        <div class="modal-footer d-flex justify-content-center rounded-top-5">
+                            <button class="btn button-primary" data-bs-dismiss="modal">OK</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </main>
         <footer class="text-center text-lg-start mt-3 rounded-top-4">
             <div class="container p-2">
