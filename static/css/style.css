@@ -114,11 +114,59 @@ body::-webkit-scrollbar-thumb,
     margin: 0 auto;
     left: 0;
     right: 0;
-    top: -5rem;
-    width: 8rem;
-    height: 8rem;
+    top: -40px;
+    width: 70px;
+    height: 70px;
 }
 
-.modal-succes {
+.icon-failed {
+    background-color: hsl(0, 70%, 50%);
+    position: absolute;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    top: -40px;
+    width: 70px;
+    height: 70px;
+}
+
+.modal-succes .modal-header {
     background-color: hsl(74, 32%, 25%);
+}
+
+.modal-failed .modal-header,
+.modal-failed .modal-footer {
+    background-color: hsl(0, 70%, 40%);
+}
+
+
+.material-icons {
+    font-family: 'Material Icons';
+    font-weight: normal;
+    font-style: normal;
+    /* Preferred icon size */
+    display: inline-block;
+    line-height: 1;
+    text-transform: none;
+    letter-spacing: normal;
+    word-wrap: normal;
+    white-space: nowrap;
+    direction: ltr;
+
+    /* Support for all WebKit browsers. */
+    -webkit-font-smoothing: antialiased;
+    /* Support for Safari and Chrome. */
+    text-rendering: optimizeLegibility;
+
+    /* Support for Firefox. */
+    -moz-osx-font-smoothing: grayscale;
+
+    /* Support for IE. */
+    font-feature-settings: 'liga';
+}
+.navbar-toggler:focus,
+.navbar-toggler:active,
+.navbar-toggler-icon:focus {
+    outline: none;
+    box-shadow: none;
 }
