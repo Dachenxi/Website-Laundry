@@ -29,9 +29,6 @@
     </div>
     <div class="mt-3">
         <div class="popup d-grid gap-3 p-3 border-1 rounded-2 shadow">
-            <div class="col">
-                <input type="text" class="form-control" placeholder="Cari Pelanggan / Status" id="search" onkeyup="filterTable()">
-            </div>
             <div class="col d-flex justify-content-center">
                 <button type="button" class="btn primary text-white button-primary" data-bs-toggle="modal" data-bs-target="#addTransaksi">Tambah Transaksi</button>
             </div>
@@ -51,6 +48,14 @@
                 </tr>
             </thead>
             <tbody>
+                <tr>
+                    <td>Data Dummy</td>
+                    <td>Data Dummy</td>
+                    <td>Data Dummy</td>
+                    <td class="text-center">
+                        <button type="button" class="btn button-primary" data-bs-toggle="modal" data-bs-target="#Detail-Transaksi">Detail</button>
+                    </td>
+                </tr>
             </tbody>
         </table>
     </div>
@@ -63,7 +68,7 @@
             <!-- Header Modal -->
             <div class="modal-header">
                 <h1 class="modal-title fs-5" id="exampleModalLabel">Tambah Transaksi</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <button type="button" class="btn-close primary" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
 
             <!-- Body Modal -->
@@ -130,10 +135,73 @@
             <!-- Footer Modal (opsional) -->
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn primary">Save changes</button>
+                <button type="button" class="btn button-primary">Simpan</button>
             </div>
         </div>
     </div>
 </div>
+
+<div
+    class="modal fade"
+    id="Detail-Transaksi"
+    tabindex="-1"
+    data-bs-backdrop="static"
+    data-bs-keyboard="false"
+
+    role="dialog"
+    aria-labelledby="DetailTransaki"
+    aria-hidden="true"
+>
+    <div
+        class="modal-dialog modal-xl modal-dialog-scrollable modal-dialog-centered modal-fullscreen-sm-down"
+        role="document"
+    >
+        <div class="modal-content">
+            <div class="modal-header">
+                <h6 class="modal-title" id="DetailTransaki">
+                    Detail Transaksi
+                </h6>
+                <button
+                    type="button"
+                    class="btn-close primary"
+                    data-bs-dismiss="modal"
+                    aria-label="Close"
+                ></button>
+            </div>
+            <div class="modal-body">
+                <div class="row g-3 align-items-center">
+                    <div class="col-12 col-lg-3 text-center">
+                        <div class="rounded-circle popup p-3 shadow-sm align-self-center d-inline-flex">
+                            <img src="../static/images/user.png" alt="Gambar Wajah" width="125" height="125">
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-8">
+                        <div class="rounded-2 border-black popup p-3 shadow-sm">
+                            <p>ID</p>
+                            <p>Nama Pelanggan</p>
+                            <p>Nama Karyawan</p>
+                            <p>Tanggal</p>
+                            <p>Status</p>
+                            <p>Total Harga</p>
+                            <p>Uang Muka</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button
+                    type="button"
+                    class="btn btn-secondary"
+                    data-bs-dismiss="modal"
+                >
+                    Tutup
+                </button>
+                <button type="button" class="btn btn-primary">Simpan</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 
 {% endblock %}
