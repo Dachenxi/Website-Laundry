@@ -92,7 +92,15 @@
                             name="Nama-Karyawan"
                             id="Nama-Karyawan"
                             placeholder="Nama"
+                            required
                         />
+                    </div>
+                    <div class="flex-fill rounded-2 border-black popup p-3 shadow-sm">
+                        <label for="Jenis-Kelamin-Karyawan" class="form-label">Jenis Kelamin</label>
+                        <select class="form-select" name="Jenis-Kelamin-Karyawan" id="Jenis-Kelamin-Karyawan">
+                            <option value="Laki-laki" selected>Laki-laki</option>
+                            <option value="Perempuan">Perempuan</option>
+                        </select>
                     </div>
                     <div class="flex-fill rounded-2 border-black popup p-3 shadow-sm">
                         <label for="Alamat-Karyawan" class="form-label">Alamat</label>
@@ -102,6 +110,7 @@
                             name="Alamat-Karyawan"
                             id="Alamat-Karyawan"
                             placeholder="Alamat"
+                            required
                         />
                     </div>
                     <div class="flex-fill rounded-2 border-black popup p-3 shadow-sm">
@@ -110,9 +119,9 @@
                             class="form-select"
                             name="Posisi-Karyawan"
                             id="Posisi-Karyawan"
+                            required
                         >
-                            <option selected>Karyawan</option>
-                            <option value="Admin">Admin</option>
+                            <option value="Karyawan" selected>Karyawan</option>
                         </select>
                     </div>
                     <div class="flex-fill rounded-2 border-black popup p-3 shadow-sm">
@@ -121,8 +130,9 @@
                             type="number"
                             class="form-control"
                             name="Nomor Telepon"
-                            id="Nomor Telepon"
+                            id="Nomor-Telepon"
                             placeholder="Nomer Telepon"
+                            required
                         />
                     </div>
                     <div class="flex-fill rounded-2 border-black popup p-3 shadow-sm">
@@ -133,6 +143,7 @@
                             name="Email-Karyawan"
                             id="Email-Karyawan"
                             placeholder="Email Karyawan"
+                            required
                         />
                     </div>
                 </div>
@@ -146,7 +157,7 @@
                 >
                     Close
                 </button>
-                <button type="button" class="btn button-primary" data-bs-toggle="modal" data-bs-target="#Succes">Save</button>
+                <button type="submit" class="btn button-primary" onclick="tambahkaryawan()">Submit</button>
             </div>
         </div>
     </div>
