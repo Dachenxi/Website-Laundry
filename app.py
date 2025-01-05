@@ -7,6 +7,13 @@ from datetime import datetime
 app = Flask(__name__,)
 CORS(app)
 
+@app.after_request
+def add_header(response):
+    response.headers['Cache-Control'] = 'no-store, no-cache, must-revalidate, max-age=0'
+    response.headers['Pragma'] = 'no-cache'
+    response.headers['Expires'] = '0'
+    return response
+
 @app.route('/')
 def home():
     return render_template('index.html')
@@ -82,8 +89,28 @@ def get_transaksi():
     except Exception as e:
         return jsonify({"error": str(e)})
 
-
-
+@app.route('/api/karyawan/add', methods=['POST'])
+def add_karyawan():
+    data = request.get_json()
+    namaKaryawan = data.get('namaKaryawan')
+    jenisKelamin = data.get('jenisKelamin')
+    alamat = data.get('alamat')
+    posisi = data.get('posisi')
+    noTelepon = data.get('noTelepon')
+    email = data.get('email')
+    print(namaKaryawan, jenisKelamin, alamat, posisi, noTelepon, email)
+    if not all([namaKaryawan, jenisKelamin, alamat, posisi, noTelepon, email]):
+        return jsonify({"success": False, "pesan": "Semua data harus diisi!"}), 400
+    query = f"""
+        INSERT INTO karyawan (namaKaryawan, jenisKelamin, Jabatan, alamat, noTelepon, email)
+        VALUES ('{namaKaryawan}', '{jenisKelamin}', '{posisi}', '{alamat}', '{noTelepon}', '{email}')
+    """
+    try:
+        hasil = execute_query(query)
+        print(hasil)
+        return jsonify({"success": True, "pesan": "Data karyawan berhasil ditambahkan!"}), 201
+    except Exception as e:
+        return jsonify({"success": False, "pesan": f"{str(e)}"}), 500
 
 if __name__ == '__main__':
     app.run(debug=True)
