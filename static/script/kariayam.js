@@ -71,3 +71,37 @@ function showDetails(idKaryawan, namaKaryawan, jenisKelamin, Jabatan, alamat, no
     $('#NoTlp-Karyawan-modal').text(`No Telepon : ${noTelepon}`);
     $('#Email-Karyawan-modal').text(`Email : ${Email}`);
 }
+
+function tambahkaryawan() {
+    const data = {
+        namaKaryawan: $('#Nama-Karyawan').val().trim(),
+        jenisKelamin: $('#Jenis-Kelamin-Karyawan').val().trim(),
+        alamat: $('#Alamat-Karyawan').val().trim(),
+        posisi: $('#Posisi-Karyawan').val().trim(),
+        noTelepon: $('#Nomor-Telepon').val().trim(),
+        email: $('#Email-Karyawan').val().trim()
+    };
+    if (!data.namaKaryawan || !data.jenisKelamin || !data.alamat || !data.posisi || !data.noTelepon || !data.email) {
+        showErrorToast('Semua kolom harus diisi sebelum submit!');
+        return;
+    }
+    showWaitToast('Data lagi di tambah ya sayang :)')
+    $.ajax({
+        url: '/api/karyawan/add',
+        type: 'POST',
+        contentType: 'application/json',
+        data: JSON.stringify(data),
+        success: function(response) {
+            if (response.success) {
+                showSuccessToast(response.pesan)
+                setTimeout(() => location.reload(), 1500);
+            }
+            else {
+                showErrorToast(response.pesan)
+            }
+        },
+        error: function(xhr, status, error) {
+            showErrorToast(`error: `, response.pesan);
+        }
+    })
+}
