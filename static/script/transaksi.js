@@ -27,21 +27,20 @@ $(document).ready(function() {
             url: '/api/transaksi',
             type: 'GET',
             success: function(response) {
-                const dataKaryawan = response.dataKaryawan
-                const total = response.karyawan.total
-                const totalLaki = response.karyawan.laki_laki
-                const totalperempuan = response.karyawan.perempuan
+                const dataTransaksi = response.dataTransaksi
+                const totalTransaksi = response.transaksi.totalTransaksi
+                const transaksiHariIni = response.transaksi.hariini
                 const tabel = $('#tabel-transaksi tbody');
                 tabel.empty();
-                dataKaryawan.forEach(karyawan => {
+                dataTransaksi.forEach(transaksi => {
                     const row = `
                     <tr>
-                        <td>${karyawan.idKaryawan}</td>
-                        <td>${karyawan.namaKaryawan}</td>
-                        <td>${karyawan.jenisKelamin}</td>
+                        <td>${transaksi.idTransaksi}</td>
+                        <td>${transaksi.tanggal}</td>
+                        <td>${transaksi.status}</td>
                         <td class="text-center">
-                            <button type="button" class="btn button-primary" data-bs-toggle="modal" data-bs-target="#Detail-Karyawan"
-                            onclick="showDetails('${karyawan.idKaryawan}', '${karyawan.namaKaryawan}', '${karyawan.jenisKelamin}', '${karyawan.Jabatan}', '${karyawan.alamat}', '${karyawan.noTelepon}', '${karyawan.email}')">Details</button>
+                            <button type="button" class="btn button-primary" data-bs-toggle="modal" data-bs-target="#Modal-Detail-Transaksi"
+                            onclick="showDetails('${transaksi.idTransaksi}', '${transaksi.idPelanggan}', '${transaksi.idKaryawan}', '${transaksi.tanggal}', '${transaksi.status}', '${transaksi.totalHarga}', '${transaksi.uangMuka}')">Details</button>
                         </td>
                     </tr>
                     `;
@@ -49,10 +48,9 @@ $(document).ready(function() {
                 });
                 // Inisialisasi DataTable setelah data dimuat
                 initializeDataTable();
-                $('#total').text(total)
-                $('#totallakilaki').text(totalLaki)
-                $('#totalperempuan').text(totalperempuan)
-                showSuccessToast('Data karyawan berhasil dimuat');
+                $('#transaksiHariIni').text(transaksiHariIni)
+                $('#transaksiSemuanya').text(totalTransaksi)
+                showSuccessToast('Data transaksi berhasil dimuat');
             },
             error: function(err) {
                 showErrorToast(err);
@@ -62,12 +60,12 @@ $(document).ready(function() {
     load_pelanggan();
 });
 
-function showDetails(idKaryawan, namaKaryawan, jenisKelamin, Jabatan, alamat, noTelepon, Email) {
-    $('#Nama-Karyawan-modal').text(`Nama karyawan : ${namaKaryawan}`);
-    $('#Id-Karyawan-modal').text(`ID karyawan : ${idKaryawan}`);
-    $('#Gender-Karyawan-modal').text(`Jenis Kelamin : ${jenisKelamin}`);
-    $('#Jabatan-Karyawan-modal').text(`Jabatan : ${Jabatan}`);
-    $('#Alamat-Karyawan-modal').text(`Alamat : ${alamat}`);
-    $('#NoTlp-Karyawan-modal').text(`No Telepon : ${noTelepon}`);
-    $('#Email-Karyawan-modal').text(`Email : ${Email}`);
+function showDetails(idTransaksi, idPelanggan, idKaryawan, tanggal, status, totalHarga, uangMuka) {
+    $("#idTransaksi").text(`ID Transaksi : ${idTransaksi}`)
+    $("#idPelanggan").text(`ID Pelanggan : ${idPelanggan}`)
+    $("#idKaryawan").text(`ID Karyawan : ${idKaryawan}`)
+    $("#tanggalTransaksi").text(`Tanggal : ${tanggal}`)
+    $("#statusTransaksi").text(`Status Transaksi : ${status}`)
+    $("#totalTransaksi").text(`Total : ${totalHarga}`)
+    $("#uangTransaksi").text(`Uang Muka : ${uangMuka}`)
 }

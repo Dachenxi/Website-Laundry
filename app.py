@@ -1,7 +1,7 @@
 from flask import Flask, jsonify, request, render_template
 from flask_cors import CORS
 from config import execute_query
-import datetime as dt
+from datetime import datetime
 
 
 app = Flask(__name__,)
@@ -59,6 +59,29 @@ def get_karyawan():
         return jsonify(result)
     except Exception as e:
         return jsonify({"error": str(e)})
+
+@app.route('/api/transaksi', methods=['GET'])
+def get_transaksi():
+    harini = datetime.today()
+    formatted_today = harini.strftime('%Y-%m-%d')
+    qdatatransaksi = r"SELECT idTransaksi, idPelanggan, idKaryawan, DATE_FORMAT(CONVERT_TZ(waktuTanggal, '+00:00', 'Asia/Jakarta'),'%Y-%m-%d') as tanggal, status, totalHarga, uangMuka FROM transaksi"
+    qtransaksihariini = f"SELECT count(*) as transaksihariini FROM transaksi WHERE DATE_FORMAT(CONVERT_TZ(waktuTanggal, '+00:00', 'Asia/Jakarta'),'%Y-%m-%d') = {formatted_today}"
+    qtotaltransaksi = r"SELECT count(*) as total FROM transaksi"
+    try:
+        datatransaksi = execute_query(qdatatransaksi)
+        transaksihariini =  execute_query(qtransaksihariini)
+        totaltransaksi =  execute_query(qtotaltransaksi)
+        result = {
+            "dataTransaksi": datatransaksi,
+            "transaksi":{
+                "hariini":transaksihariini[0]['transaksihariini'],
+                "totalTransaksi":totaltransaksi[0]['total']
+            }
+        }
+        print(result)
+    except Exception as e:
+        return jsonify({"error": str(e)})
+
 
 
 

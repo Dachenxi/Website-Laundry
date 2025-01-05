@@ -10,7 +10,7 @@
                     <div class="card-body">
                         <h4 class="card-title">Transaksi Hari Ini</h4>
                         <p class="card-text fs-2">
-                            <span class="badge primary">15</span>
+                            <span class="badge primary" id="transaksiHariIni">0</span>
                         </p>
                     </div>
                 </div>
@@ -20,7 +20,7 @@
                     <div class="card-body">
                         <h4 class="card-title">Transaksi Semuanya</h4>
                         <p class="card-text fst-normal fs-2">
-                            <span class="badge primary">25</span>
+                            <span class="badge primary" id="transaksiSemuanya">0</span>
                         </p>
                     </div>
                 </div>
@@ -48,14 +48,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>Data Dummy</td>
-                    <td>Data Dummy</td>
-                    <td>Data Dummy</td>
-                    <td class="text-center">
-                        <button type="button" class="btn button-primary" data-bs-toggle="modal" data-bs-target="#Detail-Transaksi">Detail</button>
-                    </td>
-                </tr>
+
             </tbody>
         </table>
     </div>
@@ -143,7 +136,7 @@
 
 <div
     class="modal fade"
-    id="Detail-Transaksi"
+    id="Modal-Detail-Transaksi"
     tabindex="-1"
     data-bs-backdrop="static"
     data-bs-keyboard="false"
@@ -177,13 +170,13 @@
                     </div>
                     <div class="col-12 col-lg-8">
                         <div class="rounded-2 border-black popup p-3 shadow-sm">
-                            <p>ID</p>
-                            <p>Nama Pelanggan</p>
-                            <p>Nama Karyawan</p>
-                            <p>Tanggal</p>
-                            <p>Status</p>
-                            <p>Total Harga</p>
-                            <p>Uang Muka</p>
+                            <p id="idTransaksi">ID</p>
+                            <p id="idPelanggan">Nama Pelanggan</p>
+                            <p id="idKaryawan">Nama Karyawan</p>
+                            <p id="tanggalTransaksi">Tanggal</p>
+                            <p id="statusTransaksi">Status</p>
+                            <p id="totalTransaksi">Total Harga</p>
+                            <p id="uangTransaksi">Uang Muka</p>
                         </div>
                     </div>
                 </div>
@@ -202,6 +195,6 @@
     </div>
 </div>
 
-
+<script src="../static/script/transaksi.js"></script>
 
 {% endblock %}
