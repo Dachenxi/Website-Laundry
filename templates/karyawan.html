@@ -10,7 +10,7 @@
                     <div class="card-body">
                         <h4 class="card-title">Total Karyawan</h4>
                         <p class="card-text fs-2">
-                            <span class="badge primary">12</span>
+                            <span class="badge primary" id="total">0</span>
                         </p>
                     </div>
                 </div>
@@ -20,7 +20,7 @@
                     <div class="card-body">
                         <h4 class="card-title">Karyawan Laki-Laki</h4>
                         <p class="card-text fs-2">
-                            <span class="badge primary">12</span>
+                            <span class="badge primary" id="totallakilaki">0</span>
                         </p>
                     </div>
                 </div>
@@ -30,7 +30,7 @@
                     <div class="card-body">
                         <h4 class="card-title">Karyawan Perempuan</h4>
                         <p class="card-text fs-2">
-                            <span class="badge primary">2</span>
+                            <span class="badge primary" id="totalperempuan">0</span>
                         </p>
                     </div>
                 </div>
@@ -56,17 +56,8 @@
                     <th>Aksi</th>
                 </tr>
             </thead>
-            <tbody id="tabel-karyawan-body">
-                <tr>
-                    <td>Data Dummy</td>
-                    <td>Data Dummy</td>
-                    <td>Data Dummy</td>
-                    <td class="text-center">
-                        <div class="container-fluid">
-                            <button type="button" class="btn button-primary" data-bs-toggle="modal" data-bs-target="#Detail-Karyawan">Details</button>
-                        </div>
-                    </td>
-                </tr>
+            <tbody>
+
             </tbody>
         </table>
     </div>
@@ -193,11 +184,13 @@
                         </div>
                         <div class="col-12 col-lg-5">
                             <div class="rounded-2 border-black popup p-3 shadow-sm">
-                                <p>Nama : Data Dummy</p>
-                                <p>ID : Data Dummy</p>
-                                <p>Alamt : Data Dummy</p>
-                                <p>Nomor Telepon : Data Dummy</p>
-                                <p>Email : Data Dummy@gmail.com</p>
+                                <p id="Nama-Karyawan-modal"></p>
+                                <p id="Id-Karyawan-modal"></p>
+                                <p id="Gender-Karyawan-modal"></p>
+                                <p id="Jabatan-Karyawan-modal"></p>
+                                <p id="Alamat-Karyawan-modal"></p>
+                                <p id="NoTlp-Karyawan-modal"></p>
+                                <p id="Email-Karyawan-modal"></p>
                             </div>
                         </div>
                         <div class="col-12 col-lg-4">
@@ -221,5 +214,7 @@
         </div>
     </div>
 </div>
+
+<script src="../static/script/kariayam.js"></script>
 
 {% endblock %}

@@ -8,19 +8,9 @@
             <div class="col">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="card-title">Pelanggan Setia</h4>
-                        <p class="card-text fs-2">
-                            <span class="badge primary">AndiAnda</span>
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card">
-                    <div class="card-body">
                         <h4 class="card-title">Total Pelanggan</h4>
                         <p class="card-text fs-2">
-                            <span class="badge primary">15</span>
+                            <span class="badge primary" id="TotalPelanggan">0</span>
                         </p>
                     </div>
                 </div>
@@ -28,7 +18,7 @@
         </div>
     </div>
     <div class="p-3 popup shadow mt-3 rounded-2">
-        <table id="tabel-pelanggan" class="table table-striped table-hover">
+        <table id="tabel-pelanggan" class="table table-striped table-hover table-bordered">
             <thead>
                 <tr>
                     <th>ID</th>
@@ -38,13 +28,6 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>Andi</td>
-                    <td>Jl. Jalan</td>
-                    <td class="text-center">
-                        <button type="button" class="btn button-primary" data-bs-toggle="modal" data-bs-target="#Detail-Pelanggan">Details</button>
-                    </td>
             </tbody>
         </table>
     </div>
@@ -83,10 +66,10 @@
                     </div>
                     <div class="col-12 col-lg-9">
                         <div class="rounded-2 border-black popup p-3 shadow-sm">
-                            <p>Nama : Data Dummy</p>
-                            <p>ID : Data Dummy</p>
-                            <p>Alamt : Data Dummy</p>
-                            <p>Nomor Telepon : Data Dummy</p>
+                            <p id="Nama-Pelanggan"></p>
+                            <p id="ID-Pelanggan"></p>
+                            <p id="Alamt-Pelanggan"></p>
+                            <p id="No-Pelanggan"></p>
                         </div>
                     </div>
                 </div>
@@ -105,5 +88,5 @@
     </div>
 </div>
 
-
+<script src="../static/script/pelanggan.js"></script>
 {% endblock %}

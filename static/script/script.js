@@ -1,40 +1,48 @@
-$(document).ready(function () {
-    $('#tabel-pelanggan').DataTable({
-        paging: true,
-        searching: true,
-        ordering: true,
-        lengthMenu: [5, 10, 15], // Dropdown opsi panjang
-        responsive: true,
-        language: {
-            search: "Cari:", // Ubah label search
-            lengthMenu: "_MENU_ data per page", // Ubah dropdown label
-            info: "Menampilkan _START_ hingga _END_ dari _TOTAL_ data"
-        }
+
+window.successToast = null;
+window.errorToast = null;
+window.waitToast = null;
+
+$(document).ready(function() {
+    // Inisialisasi toast
+    window.successToast = new bootstrap.Toast(document.getElementById('successToast'), {
+        delay: 3000
     });
 
-    $('#tabel-transaksi').DataTable({
-        paging: true,
-        searching: true,
-        ordering: true,
-        lengthMenu: [5, 10, 15], // Dropdown opsi panjang
-        responsive: true,
-        language: {
-            search: "Cari:", // Ubah label search
-            lengthMenu: "_MENU_ data per page", // Ubah dropdown label
-            info: "Menampilkan _START_ hingga _END_ dari _TOTAL_ data"
-        }
+    window.errorToast = new bootstrap.Toast(document.getElementById('errorToast'), {
+        delay: 3000
     });
 
-    $('#tabel-karyawan').DataTable({
-        paging: true,
-        searching: true,
-        ordering: true,
-        lengthMenu: [5, 10, 15], // Dropdown opsi panjang
-        responsive: true,
-        language: {
-            search: "Cari:", // Ubah label search
-            lengthMenu: "_MENU_ data per page", // Ubah dropdown label
-            info: "Menampilkan _START_ hingga _END_ dari _TOTAL_ data"
-        }
+    window.waitToast = new bootstrap.Toast(document.getElementById('waitToast'), {
+        delay: 3000
     });
 });
+
+// Fungsi untuk menampilkan error toast
+function showErrorToast(message) {
+    $("#errorToastMessage").text(message);
+    if (window.errorToast) {
+        window.errorToast.show();
+    } else {
+        console.error("Error toast belum diinisialisasi!");
+    }
+}
+
+// Fungsi untuk menampilkan success toast
+function showSuccessToast(message) {
+    $("#successToastMessage").text(message);
+    if (window.successToast) {
+        window.successToast.show();
+    } else {
+        console.error("Success toast belum diinisialisasi!");
+    }
+}
+
+function showWaitToast(message) {
+    $("#waitToastMessage").text(message);
+    if (window.waitToast) {
+        window.waitToast.show();
+    } else {
+        console.error("Wait toast belum diinisialisasi!");
+    }
+}

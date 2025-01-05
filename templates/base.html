@@ -34,13 +34,13 @@
                         </a>
                     </div>
                     <div>
-                        <button class="navbar-toggler p-2 primary rounded-2" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                        <button class="navbar-toggler p-3 primary rounded-2" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
                             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"
                             >
                             <img src="../static/images/list.png" alt="Laundry" width="25" height="25">
                         </button>
                     </div>
-                    <div class="collapse navbar-collapse text-center justify-content-end" id="navbarSupportedContent">
+                    <div class="collapse navbar-collapse text-center justify-content-end p-2" id="navbarSupportedContent">
                         <ul class="navbar-nav">
                             <div class="row p-2 g-3">
                                 <div class="col">
@@ -73,54 +73,53 @@
             {% block content %}
             {% endblock %}
 
-            <!-- Modal Succes -->
+            <!-- ========== Start Toast Section ========== -->
+            <div class="toast-container position-fixed bottom-0 end-0 p-3">
+                <!-- Toast Success -->
+                <div id="successToast" class="toast shadow align-items-center text-white bg-success border-1 border-white" role="alert"
+                    aria-live="assertive" aria-atomic="true">
+                    <div class="d-flex">
+                        <div class="toast-body">
+                            <i class="bi bi-check-circle me-2"></i>
+                            <span id="successToastMessage">Data berhasil disimpan!</span>
+                        </div>
+                        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"
+                            aria-label="Close"></button>
+                    </div>
+                </div>
 
-            <div id="Succes" class="modal fade">
-                <div class="modal-dialog modal-dialog-centered modal-sm">
-                    <div class="modal-content modal-succes">
-                        <div class="modal-header d-flex justify-content-center rounded-bottom-5">
-                            <div class="popup rounded-circle icon-sucsess align-self-center d-flex justify-content-center">
-                                <span class="material-icons" style="font-size: 70px;">check</span>
-                            </div>
-                            <div>
-                                <h4 class="modal-title mt-3">Succes Njir wkwkwk</h4>
-                            </div>
+                <!-- Toast Error -->
+                <div id="errorToast" class="toast shadow align-items-center text-white bg-danger border-1 border-white" role="alert"
+                    aria-live="assertive" aria-atomic="true">
+                    <div class="d-flex">
+                        <div class="toast-body">
+                            <i class="bi bi-exclamation-circle me-2"></i>
+                            <span id="errorToastMessage">Terjadi kesalahan!</span>
                         </div>
-                        <div class="modal-body">
-                            <p class="text-center text-white">Data Ditambahkan</p>
+                        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"
+                            aria-label="Close"></button>
+                    </div>
+                </div>
+
+                <div id="waitToast" class="toast shadow align-items-center text-white bg-primary border-1 border-white" role="alert"
+                    aria-live="assertive" aria-atomic="true">
+                    <div class="d-flex">
+                        <div class="toast-body">
+                            <i class="bi bi-check-circle me-2"></i>
+                            <span id="waitToastMessage">Data berhasil disimpan!</span>
                         </div>
-                        <div class="modal-footer d-flex justify-content-center rounded-top-5">
-                            <button class="btn button-primary" data-bs-dismiss="modal">OK</button>
-                        </div>
+                        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"
+                            aria-label="Close"></button>
                     </div>
                 </div>
             </div>
+            <!-- ========== End Toast Section ========== -->
 
-            <!-- Modal Failed -->
-            <div id="Failed" class="modal fade">
-                <div class="modal-dialog modal-dialog-centered modal-sm">
-                    <div class="modal-content modal-failed">
-                        <div class="modal-header d-flex justify-content-center rounded-bottom-5">
-                            <div class="popup rounded-circle icon-failed align-self-center d-flex justify-content-center">
-                                <span class="material-icons" style="font-size: 70px;">close</span>
-                            </div>
-                            <div>
-                                <h4 class="modal-title mt-3">Gagal Njir wkwkwk</h4>
-                            </div>
-                        </div>
-                        <div class="modal-body justify-content-end m-0">
-                            <p class="text-white text-center">Data Gagal Ditambahkan</p>
-                        </div>
-                        <div class="modal-footer d-flex justify-content-center rounded-top-5">
-                            <button class="btn button-primary" data-bs-dismiss="modal">OK</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+
         </main>
         <footer class="text-center text-lg-start mt-3 rounded-top-4">
             <div class="container p-2">
-                <p class="text-center text-white mb-0">
+                <p class="text-center text-white mb-0 m-2">
                     &copy; 2024 LaundryApp. All Rights Reserved.
                 </p>
             </div>
