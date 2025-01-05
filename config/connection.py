@@ -43,9 +43,10 @@ def execute_query(query,*value):
         else:
             # Commit for non-SELECT queries
             db.commit()
-            result = {"message": "Query executed successfully"}
+            return 'success'
         cursor.close()
         db.close()
         return result
     except Error as e:
+        
         raise Exception(f"Query execution failed: {e}")
