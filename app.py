@@ -78,7 +78,7 @@ def get_transaksi():
                 "totalTransaksi":totaltransaksi[0]['total']
             }
         }
-        print(result)
+        return jsonify(result)
     except Exception as e:
         return jsonify({"error": str(e)})
 
