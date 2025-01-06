@@ -90,27 +90,133 @@ def get_transaksi():
         return jsonify({"error": str(e)})
 
 @app.route('/api/karyawan/add', methods=['POST'])
-def add_karyawan():
-    data = request.get_json()
-    namaKaryawan = data.get('namaKaryawan')
-    jenisKelamin = data.get('jenisKelamin')
-    alamat = data.get('alamat')
-    posisi = data.get('posisi')
-    noTelepon = data.get('noTelepon')
-    email = data.get('email')
-    print(namaKaryawan, jenisKelamin, alamat, posisi, noTelepon, email)
-    if not all([namaKaryawan, jenisKelamin, alamat, posisi, noTelepon, email]):
-        return jsonify({"success": False, "pesan": "Semua data harus diisi!"}), 400
-    query = f"""
-        INSERT INTO karyawan (namaKaryawan, jenisKelamin, Jabatan, alamat, noTelepon, email)
-        VALUES ('{namaKaryawan}', '{jenisKelamin}', '{posisi}', '{alamat}', '{noTelepon}', '{email}')
-    """
+def tambah_karyawan():
     try:
-        hasil = execute_query(query)
-        print(hasil)
-        return jsonify({"success": True, "pesan": "Data karyawan berhasil ditambahkan!"}), 201
+        data = request.get_json()
+
+        # Validasi input
+        required_fields = {
+            'namaKaryawan': 'Nama Karyawan',
+            'jenisKelamin': 'Jenis Kelamin',
+            'alamat': 'Alamat',
+            'posisi': 'Posisi',
+            'noTelepon': 'No Telepon',
+            'email': 'Email'
+        }
+
+        # Cek field yang kosong
+        missing_fields = [field_name for field, field_name in required_fields.items()
+                        if not data.get(field)]
+
+        if missing_fields:
+            return jsonify({
+                "success": False,
+                "pesan": f"Field berikut harus diisi: {', '.join(missing_fields)}"
+            }), 400
+
+        # Gunakan parameterized query untuk mencegah SQL injection
+        query = """
+    INSERT INTO karyawan
+    (namaKaryawan, jenisKelamin, Jabatan, alamat, noTelepon, email)
+    VALUES (%s, %s, %s, %s, %s, %s)
+"""
+
+        result = execute_query(query,
+                        data['namaKaryawan'],
+                        data['jenisKelamin'],
+                        data['posisi'],
+                        data['alamat'],
+                        data['noTelepon'],
+                        data['email'])
+
+        return jsonify({
+            "success": True,
+            "pesan": "Data karyawan berhasil ditambahkan!"
+        }), 201
+
     except Exception as e:
-        return jsonify({"success": False, "pesan": f"{str(e)}"}), 500
+        # Log error untuk debugging (jangan tampilkan ke user)
+        print(f"Error: {str(e)}")
+        return jsonify({
+            "success": False,
+            "pesan": "Terjadi kesalahan saat menambahkan data karyawan"
+        }), 500
+
+@app.route('/api/transaksi/add', methods=['POST'])
+def tambah_transaksi():
+    try:
+        data = request.get_json()
+
+        # Validasi input
+        required_fields = {
+            'namaPelanggan': 'Nama Pelanggan',
+            'alamatPelanggan': 'Alamat Pelanggan',
+            'noTeleponPelanggan': 'No Telepon Pelanggan',
+            'idKaryawan': 'ID Karyawan',
+            'hariTransaksi': 'Hari Transaksi',
+            'statusTransaksi': 'Status Transaksi',
+            'totalHarga': 'Total Harga',
+            'uangMuka': 'Uang Muka'
+        }
+        # Cek field yang kosong
+        missing_fields = [field_name for field, field_name in required_fields.items() if not data.get(field)]
+        
+        if missing_fields:
+            return jsonify({
+                "success": False,
+                "pesan": f"Field berikut harus diisi: {', '.join(missing_fields)}"
+            }), 400
+        # Tambah pelanggan
+        queryPelanggan = """
+        INSERT INTO pelanggan (namaPelanggan, alamat, notelepon)
+        VALUES (%s, %s, %s)
+        RETURNING idPelanggan
+        """
+        result = execute_query(queryPelanggan,
+                        data['namaPelanggan'],
+                        data['alamatPelanggan'],
+                        data['noTeleponPelanggan'])
+        
+        # Ambil ID pelanggan yang baru dibuat
+        idPelanggan = result[0]['idPelanggan']
+        
+        # Konfirmasi pelanggan berhasil ditambahkan
+        response_pelanggan = {
+            "success": True,
+            "pesan": "Data pelanggan berhasil ditambahkan",
+            "idPelanggan": idPelanggan
+        }
+        
+        # Tambah transaksi
+        queryTransaksi = """
+        INSERT INTO transaksi (idPelanggan, idKaryawan, waktuTanggal, status, totalHarga, uangMuka)
+        VALUES (%s, %s, %s, %s, %s, %s)
+        RETURNING idTransaksi
+        """
+        
+        result_transaksi = execute_query(queryTransaksi,
+                        idPelanggan,
+                        data['idKaryawan'],
+                        data['hariTransaksi'],
+                        data['statusTransaksi'],
+                        data['totalHarga'],
+                        data['uangMuka'])
+        
+        # Konfirmasi transaksi berhasil
+        return jsonify({
+            "success": True,
+            "pesan": "Transaksi berhasil ditambahkan",
+            "dataPelanggan": response_pelanggan,
+            "idTransaksi": result_transaksi[0]['idTransaksi']
+        }), 201
+        
+    except Exception as e:
+        print(f"Error: {str(e)}")
+        return jsonify({
+            "success": False,
+            "pesan": "Terjadi kesalahan saat menambahkan transaksi"
+        }), 500
+
 
 if __name__ == '__main__':
     app.run(debug=True)
