@@ -69,3 +69,50 @@ function showDetails(idTransaksi, idPelanggan, idKaryawan, tanggal, status, tota
     $("#totalTransaksi").text(`Total : ${totalHarga}`)
     $("#uangTransaksi").text(`Uang Muka : ${uangMuka}`)
 }
+
+function tambahTransaksi() {
+    const data = {
+        namaPelanggan: $("#Nama-Pelanggan-Form").val(),
+        alamatPelanggan: $("#Alamat-Pelanggan-Form").val(),
+        noTeleponPelanggan: $("#Nomor-Telepon-Transaksi-Form").val(),
+        idKaryawan: $("#ID-Karyawan-Form").val(),
+        hariTransaksi: $("#Hari-Transaksi-Form").val(),
+        statusTransaksi: $("#Status-Transaksi-Form").val(),
+        totalHarga: $("#Total-Harga-Transaksi-Form").val(),
+        uangMuka: $("#Uang-Muka-Transaksi-Form").val()
+    }
+
+    // Validasi input
+    if (!Object.values(data).every(value => value)) {
+        showErrorToast('Semua kolom harus diisi sebelum submit!');
+        return;
+    }
+
+    showWaitToast('Data sedang diproses...')
+
+    $.ajax({
+        url: '/api/transaksi/add',
+        type: 'POST',
+        contentType: 'application/json',
+        data: JSON.stringify(data),
+        success: function(response) {
+            if (response.success) {
+                // Tampilkan pesan sukses untuk pelanggan
+                showSuccessToast(response.dataPelanggan.pesan);
+                
+                // Setelah 1.5 detik, tampilkan pesan sukses untuk transaksi
+                setTimeout(() => {
+                    showSuccessToast(response.pesan);
+                    // Reload halaman setelah 1.5 detik
+                    setTimeout(() => location.reload(), 1500);
+                }, 1500);
+            } else {
+                showErrorToast(response.pesan);
+            }
+        },
+        error: function(xhr) {
+            const response = xhr.responseJSON || {};
+            showErrorToast(response.pesan || 'Terjadi kesalahan pada server');
+        }
+    });
+}
