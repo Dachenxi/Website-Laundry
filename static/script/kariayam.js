@@ -100,7 +100,7 @@ function tambahkaryawan() {
                 showErrorToast(response.pesan)
             }
         },
-        error: function(xhr, status, error) {
+        error: function(xhr, status, error, response) {
             showErrorToast(`error: `, response.pesan);
         }
     })
