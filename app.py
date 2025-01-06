@@ -170,28 +170,17 @@ def tambah_transaksi():
         queryPelanggan = """
         INSERT INTO pelanggan (namaPelanggan, alamat, notelepon)
         VALUES (%s, %s, %s)
-        RETURNING idPelanggan
         """
         result = execute_query(queryPelanggan,
                         data['namaPelanggan'],
                         data['alamatPelanggan'],
                         data['noTeleponPelanggan'])
-        
-        # Ambil ID pelanggan yang baru dibuat
-        idPelanggan = result[0]['idPelanggan']
-        
-        # Konfirmasi pelanggan berhasil ditambahkan
-        response_pelanggan = {
-            "success": True,
-            "pesan": "Data pelanggan berhasil ditambahkan",
-            "idPelanggan": idPelanggan
-        }
+        idPelanggan = execute_query("SELECT MAX(idPelanggan) as idPelanggan FROM pelanggan")[0]['idPelanggan']
         
         # Tambah transaksi
         queryTransaksi = """
         INSERT INTO transaksi (idPelanggan, idKaryawan, waktuTanggal, status, totalHarga, uangMuka)
         VALUES (%s, %s, %s, %s, %s, %s)
-        RETURNING idTransaksi
         """
         
         result_transaksi = execute_query(queryTransaksi,
@@ -206,8 +195,10 @@ def tambah_transaksi():
         return jsonify({
             "success": True,
             "pesan": "Transaksi berhasil ditambahkan",
-            "dataPelanggan": response_pelanggan,
-            "idTransaksi": result_transaksi[0]['idTransaksi']
+            "dataPelanggan": {
+                "success": True,
+                "pesan": "Data pelanggan berhasil ditambahkan"
+            }
         }), 201
         
     except Exception as e:

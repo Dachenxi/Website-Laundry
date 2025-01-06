@@ -170,3 +170,10 @@ body::-webkit-scrollbar-thumb,
     outline: none;
     box-shadow: none;
 }
+
+.chart-container {
+    position: relative;
+    margin: auto;
+    width: 90%;
+    max-width: 600px;
+}

@@ -73,7 +73,7 @@ function showDetails(idTransaksi, idPelanggan, idKaryawan, tanggal, status, tota
 function tambahTransaksi() {
     const data = {
         namaPelanggan: $("#Nama-Pelanggan-Form").val(),
-        alamatPelanggan: $("#Alamat-Pelanggan-Form").val(),
+        alamatPelanggan: $("#Alamat-Transaksi-Form").val(),
         noTeleponPelanggan: $("#Nomor-Telepon-Transaksi-Form").val(),
         idKaryawan: $("#ID-Karyawan-Form").val(),
         hariTransaksi: $("#Hari-Transaksi-Form").val(),
@@ -81,7 +81,7 @@ function tambahTransaksi() {
         totalHarga: $("#Total-Harga-Transaksi-Form").val(),
         uangMuka: $("#Uang-Muka-Transaksi-Form").val()
     }
-
+    console.log(data)
     // Validasi input
     if (!Object.values(data).every(value => value)) {
         showErrorToast('Semua kolom harus diisi sebelum submit!');
