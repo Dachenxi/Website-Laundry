@@ -56,79 +56,64 @@
 
 <!--Modal tambah transaksi-->
 <div class="modal fade" id="addTransaksi" tabindex="-1">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable ">
         <div class="modal-content">
             <!-- Header Modal -->
-            <div class="modal-header">
+            <div class="modal-header rounded-bottom-4 shadow-sm">
                 <h1 class="modal-title fs-5" id="exampleModalLabel">Tambah Transaksi</h1>
                 <button type="button" class="btn-close primary" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
 
             <!-- Body Modal -->
             <div class="modal-body">
-                <div class="form-floating mb-2">
-                    <input
-                        type="text"
-                        class="form-control"
-                        name="formId1"
-                        id="formId1"
-                        placeholder=""
-                    />
-                    <label for="formId1">Nama Pelanggan</label>
-                </div>
-                <div class="form-floating mb-3">
-                    <input
-                        type="text"
-                        class="form-control"
-                        name="NamaKaryawan"
-                        id="NamaKaryawan"
-                        placeholder=""
-                    />
-                    <label for="NamaKaryawan">Nama Karyawan</label>
-                </div>
-
-                <div class="form-floating mb-3">
-                    <input
-                        type="date"
-                        class="form-control"
-                        name="Tanggal"
-                        id="Tanggal"
-                        placeholder=""
-                    />
-                    <label for="Tanggal">Tanggal</label>
-                </div>
-                <div class="form-floating mb-3">
-                    <select name="Status" id="Status" class="form-select">
-                        <option selected>Belum Lunas</option>
-                        <option value="1">Lunas</option>
-                    </select>
-                    <label for="Status">Status</label>
-                </div>
-                <div class="form-floating mb-3">
-                    <input
-                        type="number"
-                        class="form-control"
-                        name="TotalHarga"
-                        id="TotalHarga"
-                        placeholder=""
-                    />
-                    <label for="TotalHarga">Total harga</label>
-                </div>
-                <div class="form-floating mb-3">
-                    <input
-                        type="number"
-                        class="form-control"
-                        name="UangMuka"
-                        id="UangMuka"
-                        placeholder=""
-                    />
-                    <label for="UangMuka">Uang Muka</label>
+                <div class="d-flex text-white flex-column gap-3"">
+                    <div class="flex-fill rounded-2 border-black popup p-3 shadow-sm">
+                        <label for="Nama-Pelanggan-Form" class="form-label">Nama Pelanggan</label>
+                        <input type="text" class="form-control" name="Nama-Pelanggan-Form" id="Nama-Pelanggan-Form"
+                            placeholder="Nama Pelanggan" />
+                    </div>
+                    <div class="flex-fill rounded-2 border-black popup p-3 shadow-sm">
+                        <label for="Alamat-Transaksi-Form" class="form-label">Alamat Pelanggan</label>
+                        <input type="text" class="form-control" name="Alamat-Transaksi-Form" id="Alamat-Transaksi-Form"
+                            placeholder="Alamat" />
+                    </div>
+                    <div class="mb-3">
+                        <label for="Nomor-Telepon-Transaksi-Form" class="form-label">Nomor Telepon Pelanggan</label>
+                        <input type="number" class="form-control" name="Nomor-Telepon-Transaksi-Form" id="Nomor-Telepon-Transaksi-Form"
+                            placeholder="Nomor Telepon" />
+                    </div>
+                    <div class="flex-fill rounded-2 border-black popup p-3 shadow-sm">
+                        <label for="ID-Karyawan-Form" class="form-label">ID Karyawan</label>
+                        <input type="number" class="form-control" name="ID-Karyawan-Form" id="ID-Karyawan-Form"
+                            placeholder="ID Karyawan" />
+                    </div>
+                    <div class="flex-fill rounded-2 border-black popup p-3 shadow-sm">
+                        <label for="Hari-Transaksi-Form" class="form-label">Tanggal</label>
+                        <input type="date" class="form-control" name="Hari-Transaksi-Form" id="Hari-Transaksi-Form" placeholder="" />
+                    </div>
+                    <div class="flex-fill rounded-2 border-black popup p-3 shadow-sm">
+                        <label for="Status-Transaksi-Form" class="form-label">Status Pesanan</label>
+                        <select class="form-select form-select-sm" name="Status-Transaksi-Form" id="Status-Transaksi-Form">
+                            <option selected value="Belum Lunas">Belum Lunas</option>
+                            <option value="Lunas">Lunas</option>
+                        </select>
+                    </div>
+                    <div class="flex-fill rounded-2 border-black popup p-3 shadow-sm">
+                        <label for="Total-Harga-Transaksi-Form" class="form-label">Total Harga</label>
+                        <input type="number" class="form-control" name="Total-Harga-Transaksi-Form" id="Total-Harga-Transaksi-Form"
+                            placeholder="Total Harga" />
+                    </div>
+                    <div class="flex-fill rounded-2 border-black popup p-3 shadow-sm">
+                        <label for="Uang-Muka-Transaksi-Form" class="form-label">Uang Muka</label>
+                        <input type="number" class="form-control" name="Uang-Muka-Transaksi-Form" id="Uang-Muka-Transaksi-Form"
+                            placeholder="Uang Muka" />
+                    </div>
                 </div>
             </div>
             <!-- Footer Modal (opsional) -->
-            <div class="modal-footer">
+            <div class="modal-footer rounded-top-4 shadow-sm">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn button-primary">Simpan</button>
+                <button type="button" class="btn button-primary" onclick="tambahTransaksi()">Simpan</button>
             </div>
         </div>
     </div>
