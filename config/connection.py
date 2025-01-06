@@ -1,52 +1,61 @@
-import mysql.connector, os
+import mysql.connector
 from mysql.connector import Error
 from dotenv import load_dotenv
-
-
+import os
 
 def env():
     load_dotenv("./config/.env")
-    data = {
-        "host" : os.getenv('DB_HOST'),
-        "user" : os.getenv('DB_USER'),
-        "password" : os.getenv('DB_PASS'),
-        "database" : os.getenv('DB_NAME'),
-        "port" : os.getenv('DB_PORT')
+    required_vars = {
+        'DB_HOST': 'host',
+        'DB_USER': 'user',
+        'DB_PASS': 'password',
+        'DB_NAME': 'database',
+        'DB_PORT': 'port'
     }
-    if data['host'] == None or data['user'] == None or data['password'] == None or data['database'] == None or data['port'] == None:
-        raise Exception("Environment variable not found | Please make one in \"config/.env\"")
-    else:
-        return data
+
+    data = {key: os.getenv(env_var) for env_var, key in required_vars.items()}
+
+    missing_vars = [env_var for env_var, key in required_vars.items() if not os.getenv(env_var)]
+    if missing_vars:
+        raise Exception(f"Missing environment variables: {', '.join(missing_vars)}")
+
+    return data
 
 def connect_db():
-    data = env()
-    conn = mysql.connector.connect(
-        host = data['host'],
-        user = data['user'],
-        password = data['password'],
-        database = data['database'],
-        port = data['port']
-    )
-    if conn.is_connected():
+    try:
+        data = env()
+        conn = mysql.connector.connect(**data)
+
+        if not conn.is_connected():
+            raise Exception('Failed to establish database connection')
+
         cursor = conn.cursor(dictionary=True)
         return conn, cursor
-    else:
-        raise Exception('Koneksi ke database gagal')
+    except Error as e:
+        raise Exception(f"Database connection error: {str(e)}")
 
-def execute_query(query,*value):
+def execute_query(query, *params):
+    conn = None
+    cursor = None
     try:
-        db, cursor = connect_db()
-        cursor.execute(query, value)
-        # Handle SELECT queries
+        conn, cursor = connect_db()
+
+        cursor.execute(query, params)
+
         if query.strip().upper().startswith("SELECT"):
             result = cursor.fetchall()
+            return result
         else:
-            # Commit for non-SELECT queries
-            db.commit()
+            conn.commit()
             return 'success'
-        cursor.close()
-        db.close()
-        return result
+
     except Error as e:
-        
-        raise Exception(f"Query execution failed: {e}")
+        if conn:
+            conn.rollback()  # Rollback pada kasus error
+        raise Exception(f"Query execution failed: {str(e)}")
+
+    finally:
+        if cursor:
+            cursor.close()
+        if conn and conn.is_connected():
+            conn.close()
