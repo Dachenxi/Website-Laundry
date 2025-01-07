@@ -11,7 +11,7 @@ footer,
 }
 
 main {
-    min-height: 100vh;
+    min-height: 100svh;
 }
 
 body {
@@ -171,9 +171,6 @@ body::-webkit-scrollbar-thumb,
     box-shadow: none;
 }
 
-.chart-container {
-    position: relative;
-    margin: auto;
-    width: 90%;
-    max-width: 600px;
+.chart {
+    background-color: hsl(73, 56%, 65%);
 }
