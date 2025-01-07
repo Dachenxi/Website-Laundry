@@ -2,8 +2,18 @@
 {% block title %}Home - LaundryApp{% endblock %}
 {% block content %}
 
-<div class="chart-container">
-    <canvas id="myChart"></canvas>
+<div class="container-fluid text-white">
+    <div class="row g-3 justify-content-center">
+        <div class="col-12 col-m-6">
+            <canvas id="transaksiChart" class="text-white chart rounded-2 shadow"></canvas>
+        </div>
+        <div class="col-6">
+            <canvas id="pelangganChart" class="text-white chart rounded-2 shadow"></canvas>
+        </div>
+        <div class="col-6">
+            <canvas id="pembayaranChart" class="text-white chart rounded-2 shadow"></canvas>
+        </div>
+    </div>
 </div>
 
 <script src="../static/script/index.js"></script>
