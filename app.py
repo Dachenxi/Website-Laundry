@@ -72,11 +72,11 @@ def get_transaksi():
     harini = datetime.today()
     formatted_today = harini.strftime('%Y-%m-%d')
     qdatatransaksi = r"SELECT idTransaksi, idPelanggan, idKaryawan, DATE_FORMAT(CONVERT_TZ(waktuTanggal, '+00:00', 'Asia/Jakarta'),'%Y-%m-%d') as tanggal, status, totalHarga, uangMuka FROM transaksi"
-    qtransaksihariini = f"SELECT count(*) as transaksihariini FROM transaksi WHERE DATE_FORMAT(CONVERT_TZ(waktuTanggal, '+00:00', 'Asia/Jakarta'),'%Y-%m-%d') = {formatted_today}"
+    qtransaksihariini = "SELECT count(*) as transaksihariini FROM transaksi WHERE DATE_FORMAT(CONVERT_TZ(waktuTanggal, '+00:00', 'Asia/Jakarta'),'%Y-%m-%d') = %s"
     qtotaltransaksi = r"SELECT count(*) as total FROM transaksi"
     try:
         datatransaksi = execute_query(qdatatransaksi)
-        transaksihariini =  execute_query(qtransaksihariini)
+        transaksihariini =  execute_query(qtransaksihariini,(formatted_today,))
         totaltransaksi =  execute_query(qtotaltransaksi)
         result = {
             "dataTransaksi": datatransaksi,
@@ -208,6 +208,67 @@ def tambah_transaksi():
             "pesan": "Terjadi kesalahan saat menambahkan transaksi"
         }), 500
 
+#// Expected API response format
+{
+    "dataPelanggan": {
+        "laki": 100,
+        "perempuan": 150
+    },
+    "dataPembayaran": {
+        "lunas": 200,
+        "belumLunas": 50
+    },
+    "dataKaryawan": {
+        "laki": 20,
+        "perempuan": 25
+    },
+    "dataTransaksi": [120, 150, 180, 200, 160, 170, 190, 210, 200, 220, 240, 250]
+}
+@app.route('/api/chart', methods=['GET'])
+def chart():
+    queryPelanggan = """SELECT SUM(CASE WHEN jenisKelamin = 'Laki-laki' THEN 1 ELSE 0 END) as laki,
+                        SUM(CASE WHEN jenisKelamin = 'Perempuan' THEN 1 ELSE 0 END) as Perempuan
+                        FROM karyawan"""
+    queryPembayaran = "SELECT SUM(CASE WHEN status = 'Lunas' THEN 1 ELSE 0 END) as Lunas, SUM(CASE WHEN status = 'Belum Lunas' THEN 1 ELSE 0 END) as BelumLunas FROM transaksi"
+    queryTransaksi = "SELECT MONTH(waktuTanggal) as bulan, COUNT(*) as jumlah_transaksi FROM transaksi WHERE YEAR(waktuTanggal) = YEAR(CURRENT_DATE) GROUP BY MONTH(waktuTanggal) ORDER BY MONTH(waktuTanggal);"
+    
+    try:
+        dataPelanggan = execute_query(queryPelanggan)
+        dataPembayaran = execute_query(queryPembayaran)
+        dataTransaksi = execute_query(queryTransaksi)
+        
+        # Inisialisasi dictionary untuk response
+        data = {}
+        
+        # Proses data pelanggan
+        data['dataPelanggan'] = {
+            'laki': int(dataPelanggan[0]['laki'] or 0),
+            'perempuan': int(dataPelanggan[0]['Perempuan'] or 0)
+        }
+        
+        # Proses data pembayaran
+        data['dataPembayaran'] = {
+            'lunas': int(dataPembayaran[0]['Lunas'] or 0),
+            'belumLunas': int(dataPembayaran[0]['BelumLunas'] or 0)
+        }
+        
+        # Proses data transaksi bulanan
+        transaksi_bulanan = [0] * 12  # Inisialisasi array 12 bulan dengan nilai 0
+        
+        for row in dataTransaksi:
+            month_idx = int(row['bulan']) - 1  # Convert to 0-based index
+            transaksi_bulanan[month_idx] = int(row['jumlah_transaksi'])
+        
+        data['dataTransaksi'] = transaksi_bulanan
+        print(data)
+
+        return data, 201
+    except Exception as e:
+        print(f"Error: {str(e)}")
+        return jsonify({
+            "success": False,
+            "pesan": "Terjadi kesalahan saat menambahkan transaksi"
+        }), 500
 
 if __name__ == '__main__':
     app.run(debug=True)
