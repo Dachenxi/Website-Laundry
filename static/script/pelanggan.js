@@ -23,7 +23,7 @@ $(document).ready(function() {
     }
 
     function load_pelanggan() {
-        showWaitToast('Mengambil Data')
+        ToastManager.showToast('wait','Mengambil Data')
         $.ajax({
             url: '/api/pelanggan',
             type: 'GET',
@@ -48,10 +48,10 @@ $(document).ready(function() {
                 // Inisialisasi DataTable setelah data dimuat
                 initializeDataTable();
                 $('#TotalPelanggan').text(totalPelanggan)
-                showSuccessToast('Data pelanggan berhasil dimuat');
+                ToastManager.showToast('succes','Data pelanggan berhasil dimuat');
             },
             error: function(err) {
-                showErrorToast(err);
+                ToastManager.showToast('error', err);
             }
         });
     }
