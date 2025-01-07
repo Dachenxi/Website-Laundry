@@ -1,48 +1,76 @@
+const ToastManager = {
+    // Mengatur jarak antar toast
+    TOAST_SPACING: 10,
+    activeToasts: [],
 
-window.successToast = null;
-window.errorToast = null;
-window.waitToast = null;
+    // Fungsi untuk menampilkan toast
+    showToast: function (type, message, duration = 5000) {
+        let toastElement;
 
-$(document).ready(function() {
-    // Inisialisasi toast
-    window.successToast = new bootstrap.Toast(document.getElementById('successToast'), {
-        delay: 3000
-    });
+        // Pilih toast berdasarkan tipe
+        switch (type) {
+        case "success":
+            toastElement = document.getElementById("successToast");
+            document.getElementById("successToastMessage").textContent = message;
+            break;
+        case "error":
+            toastElement = document.getElementById("errorToast");
+            document.getElementById("errorToastMessage").textContent = message;
+            break;
+        case "wait":
+            toastElement = document.getElementById("waitToast");
+            document.getElementById("waitToastMessage").textContent = message;
+            break;
+        default:
+            return;
+        }
 
-    window.errorToast = new bootstrap.Toast(document.getElementById('errorToast'), {
-        delay: 3000
-    });
+        // Buat clone dari toast element
+        const toastClone = toastElement.cloneNode(true);
+        toastClone.id = `toast-${Date.now()}`;
 
-    window.waitToast = new bootstrap.Toast(document.getElementById('waitToast'), {
-        delay: 3000
-    });
-});
+        // Tambahkan ke container
+        document.querySelector(".toast-container").appendChild(toastClone);
 
-// Fungsi untuk menampilkan error toast
-function showErrorToast(message) {
-    $("#errorToastMessage").text(message);
-    if (window.errorToast) {
-        window.errorToast.show();
-    } else {
-        console.error("Error toast belum diinisialisasi!");
-    }
-}
+        // Tambahkan ke array active toasts
+        this.activeToasts.push(toastClone);
 
-// Fungsi untuk menampilkan success toast
-function showSuccessToast(message) {
-    $("#successToastMessage").text(message);
-    if (window.successToast) {
-        window.successToast.show();
-    } else {
-        console.error("Success toast belum diinisialisasi!");
-    }
-}
+        // Initialize toast dengan Bootstrap
+        const bsToast = new bootstrap.Toast(toastClone, {
+        autohide: true,
+        delay: duration,
+        });
 
-function showWaitToast(message) {
-    $("#waitToastMessage").text(message);
-    if (window.waitToast) {
-        window.waitToast.show();
-    } else {
-        console.error("Wait toast belum diinisialisasi!");
-    }
-}
+        // Tampilkan toast
+        bsToast.show();
+
+        // Handle saat toast hilang
+        toastClone.addEventListener("hidden.bs.toast", () => {
+        this.removeToast(toastClone);
+        });
+    },
+
+    // Hitung offset untuk posisi toast
+    calculateOffset: function () {
+        let offset = 0;
+        this.activeToasts.forEach((toast) => {
+        offset += toast.offsetHeight + this.TOAST_SPACING;
+        });
+        return offset;
+    },
+
+    // Hapus toast dari stack
+    removeToast: function (toast) {
+        const index = this.activeToasts.indexOf(toast);
+        if (index > -1) {
+        this.activeToasts.splice(index, 1);
+        toast.remove();
+
+        // Reposisi toast yang tersisa
+        this.activeToasts.forEach((activeToast, idx) => {
+            const newOffset = idx * (toast.offsetHeight + this.TOAST_SPACING);
+            activeToast.style.transform = `translateY(-${newOffset}px)`;
+        });
+        }
+    },
+};
