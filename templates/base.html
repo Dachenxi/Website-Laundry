@@ -1,131 +1,130 @@
 <!doctype html>
 <html lang="en">
-    <head>
-        <title>{% block title%}Laundry App{% endblock %}</title>
-        <!-- Required meta tags -->
-        <meta charset="utf-8" />
-        <meta
-            name="viewport"
-            content="width=device-width, initial-scale=1, shrink-to-fit=no"
-        />
 
-        <!-- Bootstrap CSS v5.2.1 -->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
-        <link rel="stylesheet" href="https://cdn.datatables.net/2.1.8/css/dataTables.bootstrap5.css">
-        <link rel="stylesheet" href="../static/css/style.css"/>
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<head>
+    <title>{% block title%}Laundry App{% endblock %}</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 
-        <script src="https://code.jquery.com/jquery-3.7.1.js"></script> <!-- jQuery -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-        <!-- Bootstrap JS -->
-        <script src="https://cdn.datatables.net/2.1.8/js/dataTables.js"></script> <!-- DataTables -->
-        <script src="https://cdn.datatables.net/2.1.8/js/dataTables.bootstrap5.js"></script>
-        <!-- DataTables Bootstrap Integration -->
-        <script src="../static/script/script.js"></script>
-    </head>
+    <!-- Bootstrap CSS v5.2.1 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.1.8/css/dataTables.bootstrap5.css">
+    <link rel="stylesheet" href="../static/css/style.css" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-    <body>
-        <header class="mb-3 rounded-bottom-4">
-            <nav class="navbar navbar-expand-sm p-2">
-                <div class="container-fluid justify-content-between d-flex">
-                    <div >
-                        <a class="navbar-brand p-3 primary rounded-2" href="#">
-                            <img src="../static/images/laundry.png" alt="logo dryer" width="35" height="35">
-                        </a>
-                    </div>
-                    <div>
-                        <button class="navbar-toggler p-3 primary rounded-2" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-                            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"
-                            >
-                            <img src="../static/images/list.png" alt="Laundry" width="25" height="25">
-                        </button>
-                    </div>
-                    <div class="collapse navbar-collapse text-center justify-content-end p-2" id="navbarSupportedContent">
-                        <ul class="navbar-nav">
-                            <div class="row p-2 g-3">
-                                <div class="col">
-                                    <li class="nav-item">
-                                        <a class="nav-link button-primary p-2 rounded-2" href="/">Home</a>
-                                    </li>
-                                </div>
-                                <div class="col">
-                                    <li class="nav-item">
-                                        <a class="nav-link button-primary p-2 rounded-2" href="/pelanggan">Pelanggan</a>
-                                    </li>
-                                </div>
-                                <div class="col">
-                                    <li class="nav-item">
-                                        <a class="nav-link button-primary p-2 rounded-2" href="/karyawan">Karyawan</a>
-                                    </li>
-                                </div>
-                                <div class="col">
-                                    <li class="nav-item">
-                                        <a class="nav-link p-2 rounded-2 button-primary" href="/transaksi">Transaksi</a>
-                                    </li>
-                                </div>
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script> <!-- jQuery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.datatables.net/2.1.8/js/dataTables.js"></script> <!-- DataTables -->
+    <script src="https://cdn.datatables.net/2.1.8/js/dataTables.bootstrap5.js"></script>
+    <!-- DataTables Bootstrap Integration -->
+    <script src="../static/script/script.js"></script>
+</head>
+
+<body>
+    <header class="mb-3 rounded-bottom-4">
+        <nav class="navbar navbar-expand-sm p-2">
+            <div class="container-fluid justify-content-between d-flex">
+                <div>
+                    <a class="navbar-brand p-3 primary rounded-2" href="#">
+                        <img src="../static/images/laundry.png" alt="logo dryer" width="35" height="35">
+                    </a>
+                </div>
+                <div>
+                    <button class="navbar-toggler p-3 primary rounded-2" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                        <img src="../static/images/list.png" alt="Laundry" width="25" height="25">
+                    </button>
+                </div>
+                <div class="collapse navbar-collapse text-center justify-content-end p-2" id="navbarSupportedContent">
+                    <ul class="navbar-nav">
+                        <div class="row p-2 g-3">
+                            <div class="col">
+                                <li class="nav-item">
+                                    <a class="nav-link button-primary p-2 rounded-2" href="/">Home</a>
+                                </li>
                             </div>
-                        </ul>
-                    </div>
-                </div>
-            </nav>
-        </header>
-        <main>
-            {% block content %}
-            {% endblock %}
-
-            <!-- ========== Start Toast Section ========== -->
-            <div class="toast-container position-fixed bottom-0 end-0 p-3">
-                <!-- Toast Success -->
-                <div id="successToast" class="toast shadow align-items-center text-white bg-success border-1 border-white" role="alert"
-                    aria-live="assertive" aria-atomic="true">
-                    <div class="d-flex">
-                        <div class="toast-body">
-                            <i class="bi bi-check-circle me-2"></i>
-                            <span id="successToastMessage">Data berhasil disimpan!</span>
+                            <div class="col">
+                                <li class="nav-item">
+                                    <a class="nav-link button-primary p-2 rounded-2" href="/pelanggan">Pelanggan</a>
+                                </li>
+                            </div>
+                            <div class="col">
+                                <li class="nav-item">
+                                    <a class="nav-link button-primary p-2 rounded-2" href="/karyawan">Karyawan</a>
+                                </li>
+                            </div>
+                            <div class="col">
+                                <li class="nav-item">
+                                    <a class="nav-link p-2 rounded-2 button-primary" href="/transaksi">Transaksi</a>
+                                </li>
+                            </div>
                         </div>
-                        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"
-                            aria-label="Close"></button>
-                    </div>
-                </div>
-
-                <!-- Toast Error -->
-                <div id="errorToast" class="toast shadow align-items-center text-white bg-danger border-1 border-white" role="alert"
-                    aria-live="assertive" aria-atomic="true">
-                    <div class="d-flex">
-                        <div class="toast-body">
-                            <i class="bi bi-exclamation-circle me-2"></i>
-                            <span id="errorToastMessage">Terjadi kesalahan!</span>
-                        </div>
-                        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"
-                            aria-label="Close"></button>
-                    </div>
-                </div>
-
-                <div id="waitToast" class="toast shadow align-items-center text-white bg-primary border-1 border-white" role="alert"
-                    aria-live="assertive" aria-atomic="true">
-                    <div class="d-flex">
-                        <div class="toast-body">
-                            <i class="bi bi-check-circle me-2"></i>
-                            <span id="waitToastMessage">Data berhasil disimpan!</span>
-                        </div>
-                        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"
-                            aria-label="Close"></button>
-                    </div>
+                    </ul>
                 </div>
             </div>
-            <!-- ========== End Toast Section ========== -->
+        </nav>
+    </header>
+    <main>
+        {% block content %}
+        {% endblock %}
 
-
-        </main>
-        <footer class="text-center text-lg-start mt-3 rounded-top-4">
-            <div class="container p-2">
-                <p class="text-center text-white mb-0 m-2">
-                    &copy; 2024 LaundryApp. All Rights Reserved.
-                </p>
+        <!-- ========== Start Toast Section ========== -->
+        <div class="toast-container position-fixed bottom-0 end-0 p-3">
+            <!-- Toast Success -->
+            <div id="successToast" class="toast shadow align-items-center text-white bg-success border-1 border-white"
+                role="alert" aria-live="assertive" aria-atomic="true">
+                <div class="d-flex">
+                    <div class="toast-body">
+                        <i class="bi bi-check-circle me-2"></i>
+                        <span id="successToastMessage">Data berhasil disimpan!</span>
+                    </div>
+                    <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"
+                        aria-label="Close"></button>
+                </div>
             </div>
-        </footer>
+
+            <!-- Toast Error -->
+            <div id="errorToast" class="toast shadow align-items-center text-white bg-danger border-1 border-white"
+                role="alert" aria-live="assertive" aria-atomic="true">
+                <div class="d-flex">
+                    <div class="toast-body">
+                        <i class="bi bi-exclamation-circle me-2"></i>
+                        <span id="errorToastMessage">Terjadi kesalahan!</span>
+                    </div>
+                    <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"
+                        aria-label="Close"></button>
+                </div>
+            </div>
+
+            <div id="waitToast" class="toast shadow align-items-center text-white bg-primary border-1 border-white"
+                role="alert" aria-live="assertive" aria-atomic="true">
+                <div class="d-flex">
+                    <div class="toast-body">
+                        <i class="bi bi-check-circle me-2"></i>
+                        <span id="waitToastMessage">Data berhasil disimpan!</span>
+                    </div>
+                    <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"
+                        aria-label="Close"></button>
+                </div>
+            </div>
+        </div>
+        <!-- ========== End Toast Section ========== -->
 
 
-    </body>
+    </main>
+    <footer class="text-center text-lg-start mt-3 rounded-top-4">
+        <div class="container p-2">
+            <p class="text-center text-white mb-0 m-2">
+                &copy; 2024 LaundryApp. All Rights Reserved.
+            </p>
+        </div>
+    </footer>
+
+
+</body>
+
 </html>
