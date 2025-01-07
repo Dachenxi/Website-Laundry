@@ -22,7 +22,7 @@ $(document).ready(function() {
         });
     }
     function load_pelanggan() {
-        showWaitToast('Mengambil Data');
+        ToastManager.showToast('wait','Mengambil Data');
         $.ajax({
             url: '/api/karyawan',
             type: 'GET',
@@ -52,10 +52,10 @@ $(document).ready(function() {
                 $('#total').text(total)
                 $('#totallakilaki').text(totalLaki)
                 $('#totalperempuan').text(totalperempuan)
-                showSuccessToast('Data karyawan berhasil dimuat');
+                ToastManager.showToast('succes','Data karyawan berhasil dimuat');
             },
             error: function(err) {
-                showErrorToast(err);
+                ToastManager.showToast('error',err);
             }
         });
     }
@@ -82,7 +82,7 @@ function tambahkaryawan() {
         email: $('#Email-Karyawan').val().trim()
     };
     if (!data.namaKaryawan || !data.jenisKelamin || !data.alamat || !data.posisi || !data.noTelepon || !data.email) {
-        showErrorToast('Semua kolom harus diisi sebelum submit!');
+        ToastManager.showToast('error','Semua kolom harus diisi sebelum submit!');
         return;
     }
     showWaitToast('Data lagi di tambah ya sayang :)')
@@ -93,15 +93,15 @@ function tambahkaryawan() {
         data: JSON.stringify(data),
         success: function(response) {
             if (response.success) {
-                showSuccessToast(response.pesan)
+                ToastManager.showToast('succes', response.pesan)
                 setTimeout(() => location.reload(), 1500);
             }
             else {
-                showErrorToast(response.pesan)
+                ToastManager.showToast('error', response.pesan)
             }
         },
         error: function(xhr, status, error, response) {
-            showErrorToast(`error: `, response.pesan);
+            ToastManager.showToast('error', response.pesan);
         }
     })
 }
