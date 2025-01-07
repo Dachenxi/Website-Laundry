@@ -22,7 +22,7 @@ $(document).ready(function() {
         });
     }
     function load_pelanggan() {
-        showWaitToast('Mengambil Data');
+        ToastManager.showToast('wait','Mengambil Data');
         $.ajax({
             url: '/api/transaksi',
             type: 'GET',
@@ -50,10 +50,10 @@ $(document).ready(function() {
                 initializeDataTable();
                 $('#transaksiHariIni').text(transaksiHariIni)
                 $('#transaksiSemuanya').text(totalTransaksi)
-                showSuccessToast('Data transaksi berhasil dimuat');
+                ToastManager.showToast('success', 'Data transaksi berhasil dimuat');
             },
             error: function(err) {
-                showErrorToast(err);
+                ToastManager.showToast('error',err);
             }
         });
     }
@@ -84,11 +84,11 @@ function tambahTransaksi() {
     console.log(data)
     // Validasi input
     if (!Object.values(data).every(value => value)) {
-        showErrorToast('Semua kolom harus diisi sebelum submit!');
+        ToastManager.showToast('error', 'Semua kolom harus diisi sebelum submit!');
         return;
     }
 
-    showWaitToast('Data sedang diproses...')
+    ToastManager.showToast('wait', 'Data sedang diproses...')
 
     $.ajax({
         url: '/api/transaksi/add',
@@ -98,21 +98,21 @@ function tambahTransaksi() {
         success: function(response) {
             if (response.success) {
                 // Tampilkan pesan sukses untuk pelanggan
-                showSuccessToast(response.dataPelanggan.pesan);
+                ToastManager.showToast('success', response.dataPelanggan.pesan || 'Data pelanggan berhasil ditambahkan!');
                 
                 // Setelah 1.5 detik, tampilkan pesan sukses untuk transaksi
                 setTimeout(() => {
-                    showSuccessToast(response.pesan);
+                    ToastManager.showToast('success', response.pesan);
                     // Reload halaman setelah 1.5 detik
                     setTimeout(() => location.reload(), 1500);
                 }, 1500);
             } else {
-                showErrorToast(response.pesan);
+                ToastManager.showToast('error', response.pesan);
             }
         },
         error: function(xhr) {
             const response = xhr.responseJSON || {};
-            showErrorToast(response.pesan || 'Terjadi kesalahan pada server');
+            ToastManager.showToast('error', response.pesan || 'Terjadi kesalahan pada server');
         }
     });
 }
